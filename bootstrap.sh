@@ -13,9 +13,12 @@ source ~/.bashrc
 
 
 echo -e "\n\n#### 2. Install Java Cryptography Extensions\n\n"
-unzip config/UnlimitedJCEPolicyJDK7.zip
+COOKIES="oraclelicense=accept-securebackup-cookie;gpw_e24=http://edelivery.oracle.com"
+JCE_DOWNLOAD_URL="http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip"
+wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${JCE_DOWNLOAD_URL}" -O UnlimitedJCEPolicyJDK7.zip
+unzip UnlimitedJCEPolicyJDK7.zip
 sudo cp -f UnlimitedJCEPolicy/*.jar $JAVA_HOME/lib/security/
-rm -rf UnlimitedJCEPolicy
+rm -rf UnlimitedJCEPolicy UnlimitedJCEPolicyJDK7.zip
 
 
 echo -e "\n\n#### 3. Install Tomcat 6\n\n"
