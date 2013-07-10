@@ -29,8 +29,7 @@ chown -R tomcat6:tomcat6 /etc/tomcat6
 
 
 echo -e "\n\n#### 4. Install AtomHopper (Interaction Service)\n\n"
-echo "Download URL: http://maven.research.rackspacecloud.com/content/repositories/releases/org/atomhopper/atomhopper/1.2.9/atomhopper-1.2.9.war"
-cp config/atomhopper-1.2.9.war /var/lib/tomcat6/webapps/ah.war
+sudo wget -O /var/lib/tomcat6/webapps/ah.war http://maven.research.rackspacecloud.com/content/repositories/releases/org/atomhopper/atomhopper/1.2.9/atomhopper-1.2.9.war
 mkdir -p /etc/atomhopper /opt/atomhopper
 cp -fR config/etc/atomhopper/* /etc/atomhopper/
 chown -R tomcat6:tomcat6 /etc/atomhopper/ /opt/atomhopper
@@ -38,8 +37,7 @@ service tomcat6 restart
 
 
 echo -e "\n\n#### 5. Install Taverna Server (2.4.1)\n\n"
-echo "Download URL: https://launchpad.net/taverna-server/2.x/2.4.1/+download/TavernaServer.2.4.1.war"
-cp config/TavernaServer.2.4.1.war /var/lib/tomcat6/webapps/taverna-server.war
+sudo wget -O /var/lib/tomcat6/webapps/taverna-server.war https://launchpad.net/taverna-server/2.x/2.4.1/+download/TavernaServer.2.4.1.war
 cp -fR config/var/lib/tomcat6/conf/Catalina/localhost/* /var/lib/tomcat6/conf/Catalina/localhost/
 service tomcat6 start
 while [ ! -d /var/lib/tomcat6/webapps/taverna-server/WEB-INF ]
