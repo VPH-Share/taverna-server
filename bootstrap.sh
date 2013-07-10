@@ -2,7 +2,7 @@
 
 echo -e "\n\n#### 0. Update System Packages\n\n"
 apt-get update
-apt-get -y install unzip
+apt-get -y install unzip curl
 
 
 echo -e "\n\n#### 1. Install Java (OpenJDK-7)\n\n"
@@ -40,10 +40,11 @@ echo -e "\n\n#### 5. Install Taverna Server (2.4.1)\n\n"
 wget -O /var/lib/tomcat6/webapps/taverna-server.war https://launchpad.net/taverna-server/2.x/2.4.1/+download/TavernaServer.2.4.1.war
 cp -fR config/var/lib/tomcat6/conf/Catalina/localhost/* /var/lib/tomcat6/conf/Catalina/localhost/
 service tomcat6 start
-while [ ! -d /var/lib/tomcat6/webapps/taverna-server/WEB-INF ]
+echo "Waiting for Tomcat to unpack WAR files..."
+until [ "$(curl --silent http://localhost:8080 | grep 'Tomcat')" != "" ];
 do
-    echo "Waiting for Tomcat to unpack WAR files (20 secs)..."
-    sleep 20
+    echo --- sleeping for 10 seconds
+    sleep 10
 done
 service tomcat6 stop
 cp -fR config/var/lib/tomcat6/webapps/taverna-server/WEB-INF/* /var/lib/tomcat6/webapps/taverna-server/WEB-INF/
@@ -52,3 +53,7 @@ chown -R tomcat6:tomcat6 /var/lib/tomcat6
 
 echo -e "\n\n#### 6. Starting Tomcat Containers (AtomHopper & Taverna)\n\n"
 service tomcat6 restart
+
+echo -e "\n\n#### 7. Cleaning up\n\n"
+apt-get -y remove unzip curl
+apt-get -y autoremove
