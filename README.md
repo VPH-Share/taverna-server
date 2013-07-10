@@ -18,13 +18,13 @@ You can install the following tools via the command line with `curl`, `wget` or 
 ### via `curl`
 
 ```Shell
-curl -L https://raw.github.com/VPH-Share/taverna-server/master/install.sh | sh
+curl -L https://raw.github.com/VPH-Share/taverna-server/master/install.sh | bash
 ```
 
 ### via `wget`
 
 ```Shell
-wget --no-check-certificate https://raw.github.com/VPH-Share/taverna-server/master/install.sh -O - | sh
+wget --no-check-certificate https://raw.github.com/VPH-Share/taverna-server/master/install.sh -O - | bash
 ```
 
 ### via `git`

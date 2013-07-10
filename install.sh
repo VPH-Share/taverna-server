@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 REPO_URL="https://github.com/VPH-Share/taverna-server"
 REPO_URL=${REPO_URL%/}                    # Remove trailing slash, if any
@@ -20,6 +21,18 @@ exists() {
   fi
 }
 
+# Basic dependencies
+requires() {
+  echo "Script must be run as root."
+  echo "Script requires:"
+  echo " - wget and unzip; or"
+  echo " - git"
+  echo " "
+  echo "Please file a bug report at $REPO_URL/issues"
+  echo "Please detail your operating system type, version and any other relevant details"
+  exit 1
+}
+
 if [ -d /var/lib/tomcat6/webapps/taverna-server ]
 then
   echo "You already have Taverna Server installed. You'll need to remove Taverna Server if you want to install"
@@ -27,18 +40,15 @@ then
 fi
 
 # Get Repository
-if exists wget; then
+if exists git; then
+  git clone $REPO_URL $REPO_NAME
+  LOCAL_REPO=$REPO_NAME
+elif $(exists wget) && $(exists unzip); then
   wget $REPO_URL/archive/master.zip
   unzip master.zip
   LOCAL_REPO="$REPO_NAME-master"
-elif exists git; then
-  git clone $REPO_URL $REPO_NAME
-  LOCAL_REPO=$REPO_NAME
 else
-  echo "Script requires:"
-  echo " - wget and unzip; or"
-  echo " - git"
-  exit 1
+  requires
 fi
 
 cd $LOCAL_REPO
