@@ -15,16 +15,10 @@ source /etc/profile.d/java_path.sh
 echo -e "\n\n#### 2. Install Java Cryptography Extensions\n\n"
 COOKIES="oraclelicense=accept-securebackup-cookie;gpw_e24=http://edelivery.oracle.com"
 JCE_DOWNLOAD_URL="http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip"
-<<<<<<< HEAD
 wget --no-check-certificate --header="Cookie: ${COOKIES}" -c http://www.oracle.com/technetwork/java/javase/downloads/index.html -O /dev/null
 wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${JCE_DOWNLOAD_URL}" -O UnlimitedJCEPolicyJDK7.zip
 unzip UnlimitedJCEPolicyJDK7.zip
-cp -f UnlimitedJCEPolicy/*.jar $JAVA_HOME/lib/security/
-=======
-wget --no-check-certificate --header="Cookie: ${COOKIES}" -c "${JCE_DOWNLOAD_URL}" -O UnlimitedJCEPolicyJDK7.zip
-unzip UnlimitedJCEPolicyJDK7.zip
 sudo cp -f UnlimitedJCEPolicy/*.jar $JAVA_HOME/lib/security/
->>>>>>> c4e9d844465870dc60f758d714addf722da20601
 rm -rf UnlimitedJCEPolicy UnlimitedJCEPolicyJDK7.zip
 
 
