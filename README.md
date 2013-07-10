@@ -1,8 +1,8 @@
-## Setup
+## Taverna Server v2.4.1 Setup
 
-### Dependencies 
+### Dependencies
 
- - Ubuntu 12.04 
+ - Ubuntu 12.04 LTS
 
 You can install the following tools via the command line with `curl`, `wget` or `git`.
 
@@ -35,35 +35,41 @@ cd taverna-server
 ./bootstrap.sh 2>&1 | tee ~/taverna-install.log
 ```
 
-#### VPH-Share specific configuration
+#### Firewall Configuration
 
-To be able to access the the server from clients outside VPH-Share, certain port redirections and service endpoints need to be configured.
+To be able to access the the server from external clients, certain port redirections and service endpoints need to be configured.
 
-##### Port Redirections
+##### Security Groups (VPH-Share Port Redirections)
 
 <table>
 <thead>
 <tr>
 <th>Name    </th>
+<th> Type </th>
 <th> Port </th>
-<th> Type</th>
+<th> Source    </th>
+<th> Notes </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>taverna </td>
+<td> TCP  </td>
 <td> 1099 </td>
-<td> TCP</td>
+<td> 0.0.0.0/0 </td>
+<td>       </td>
 </tr>
 <tr>
 <td>web     </td>
+<td> TCP  </td>
 <td> 8080 </td>
-<td> HTTP</td>
+<td> 0.0.0.0/0 </td>
+<td> For VPH-Share use <strong>HTTP</strong> type</td>
 </tr>
 </tbody>
 </table>
 
-##### Endpoints
+##### VPH-Share Endpoints
 
 <table>
 <thead>
@@ -102,7 +108,7 @@ To be able to access the the server from clients outside VPH-Share, certain port
 </tbody>
 </table>
 
-**Note:** Ensure you insert the `WSDL` and `WADL` as a text string into the opetional **WS/REST Descriptor** fields.
+**Note:** Ensure you insert the `WSDL` and `WADL` as a text string into the optional **WS/REST Descriptor** fields.
 
 
 ## Taverna Server Usage
@@ -160,7 +166,7 @@ The various endpoints that Taverna Server presents will, of course, depend on wh
 </tbody>
 </table>
 
-### Username and password
+### Username and Password
 
 There is a default user set up:
 
