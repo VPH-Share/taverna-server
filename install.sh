@@ -44,8 +44,8 @@ if exists git; then
   git clone $REPO_URL $REPO_NAME
   LOCAL_REPO=$REPO_NAME
 elif $(exists wget) && $(exists unzip); then
-  wget $REPO_URL/archive/master.zip
-  unzip master.zip
+  wget -Nq $REPO_URL/archive/master.zip
+  unzip -o master.zip
   LOCAL_REPO="$REPO_NAME-master"
 else
   requires
