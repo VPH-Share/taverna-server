@@ -24,19 +24,10 @@ rm -rf UnlimitedJCEPolicy UnlimitedJCEPolicyJDK7.zip
 
 echo -e "\n\n#### 3. Install Tomcat 6\n\n"
 apt-get -y install tomcat6 tomcat6-admin
-cp -f config/etc/tomcat6/* /etc/tomcat6/
 chown -R tomcat6:tomcat6 /etc/tomcat6
 
 
-echo -e "\n\n#### 4. Install AtomHopper (Interaction Service)\n\n"
-wget -O /var/lib/tomcat6/webapps/ah.war http://maven.research.rackspacecloud.com/content/repositories/releases/org/atomhopper/atomhopper/1.2.9/atomhopper-1.2.9.war
-mkdir -p /etc/atomhopper /opt/atomhopper
-cp -fR config/etc/atomhopper/* /etc/atomhopper/
-chown -R tomcat6:tomcat6 /etc/atomhopper/ /opt/atomhopper
-service tomcat6 restart
-
-
-echo -e "\n\n#### 5. Install Taverna Server (2.4.1)\n\n"
+echo -e "\n\n#### 4. Install Taverna Server (2.4.1)\n\n"
 wget -O /var/lib/tomcat6/webapps/taverna-server.war https://launchpad.net/taverna-server/2.x/2.4.1/+download/TavernaServer.2.4.1.war
 cp -fR config/var/lib/tomcat6/conf/Catalina/localhost/* /var/lib/tomcat6/conf/Catalina/localhost/
 service tomcat6 start
@@ -51,9 +42,9 @@ cp -fR config/var/lib/tomcat6/webapps/taverna-server/WEB-INF/* /var/lib/tomcat6/
 chown -R tomcat6:tomcat6 /var/lib/tomcat6
 
 
-echo -e "\n\n#### 6. Starting Tomcat Containers (AtomHopper & Taverna)\n\n"
+echo -e "\n\n#### 5. Starting Tomcat Containers (AtomHopper & Taverna)\n\n"
 service tomcat6 restart
 
-echo -e "\n\n#### 7. Cleaning up\n\n"
+echo -e "\n\n#### 6. Cleaning up\n\n"
 apt-get -y remove unzip curl
 apt-get -y autoremove
