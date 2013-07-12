@@ -32,7 +32,7 @@ wget --no-check-certificate https://raw.github.com/VPH-Share/taverna-server/mast
 ```Shell
 git clone https://github.com/VPH-Share/taverna-server.git
 cd taverna-server
-./bootstrap.sh 2>&1 | tee ~/taverna-install.log
+./provision.sh 2>&1 | tee ~/taverna-install.log
 ```
 
 #### Firewall Configuration

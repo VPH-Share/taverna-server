@@ -52,4 +52,4 @@ else
 fi
 
 cd $LOCAL_REPO
-./bootstrap.sh 2>&1 | tee ~/taverna-install.log
+./provision.sh 2>&1 | tee ~/taverna-install.log
