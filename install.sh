@@ -35,7 +35,7 @@ requires() {
 
 if [ -d /var/lib/tomcat6/webapps/taverna-server ]
 then
-  echo "You already have Taverna Server installed. You'll need to remove Taverna Server if you want to install"
+  echo "You already have $REPO_NAME installed. You'll need to remove $REPO_NAME if you want to install"
   exit
 fi
 

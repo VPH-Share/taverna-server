@@ -30,12 +30,13 @@ chown -R tomcat6:tomcat6 /etc/tomcat6
 echo -e "\n\n#### 4. Install Taverna Server (2.4.1)\n\n"
 wget -O /var/lib/tomcat6/webapps/taverna-server.war https://launchpad.net/taverna-server/2.x/2.4.1/+download/TavernaServer.2.4.1.war
 cp -fR config/var/lib/tomcat6/conf/Catalina/localhost/* /var/lib/tomcat6/conf/Catalina/localhost/
-service tomcat6 start
+service tomcat6 restart
 echo "Waiting for Tomcat to unpack WAR files..."
-until [ "$(curl --silent http://localhost:8080 | grep 'Tomcat')" != "" ];
+while [ ! -d /var/lib/tomcat6/webapps/taverna-server/WEB-INF ]
 do
-    echo --- sleeping for 10 seconds
+    echo "Waiting for Tomcat to unpack WAR files (10 secs)..."
     sleep 10
+    service tomcat6 restart
 done
 service tomcat6 stop
 cp -fR config/var/lib/tomcat6/webapps/taverna-server/WEB-INF/* /var/lib/tomcat6/webapps/taverna-server/WEB-INF/
