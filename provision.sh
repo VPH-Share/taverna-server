@@ -47,5 +47,8 @@ echo -e "\n\n#### 5. Starting Tomcat Containers (AtomHopper & Taverna)\n\n"
 service tomcat6 restart
 
 echo -e "\n\n#### 6. Cleaning up\n\n"
+rm -rf taverna-server*
 apt-get -y remove unzip curl
 apt-get -y autoremove
+apt-get -y autoclean
+apt-get -y clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
