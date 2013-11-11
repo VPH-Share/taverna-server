@@ -2,7 +2,7 @@
 
 echo -e "\n\n#### 0. Update System Packages\n\n"
 apt-get update
-apt-get -y install unzip curl
+apt-get -y install unzip
 
 
 echo -e "\n\n#### 1. Install Java (OpenJDK-7)\n\n"
@@ -47,8 +47,6 @@ echo -e "\n\n#### 5. Starting Tomcat Containers (AtomHopper & Taverna)\n\n"
 service tomcat6 restart
 
 echo -e "\n\n#### 6. Cleaning up\n\n"
-rm -rf taverna-server*
-apt-get -y remove unzip curl
-apt-get -y autoremove
-apt-get -y autoclean
+apt-get -y remove unzip
+apt-get -y autoremove && apt-get -y autoclean
 apt-get -y clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
