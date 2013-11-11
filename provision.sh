@@ -32,7 +32,7 @@ wget -O /var/lib/tomcat6/webapps/taverna-server.war https://launchpad.net/tavern
 cp -fR config/var/lib/tomcat6/conf/Catalina/localhost/* /var/lib/tomcat6/conf/Catalina/localhost/
 service tomcat6 restart
 echo "Waiting for Tomcat to unpack WAR files..."
-while [ ! -d /var/lib/tomcat6/webapps/taverna-server/WEB-INF ]
+while [ ! -d /var/lib/tomcat6/webapps/taverna-server/taverna-server ]
 do
     echo "Waiting for Tomcat to unpack WAR files (10 secs)..."
     sleep 10
